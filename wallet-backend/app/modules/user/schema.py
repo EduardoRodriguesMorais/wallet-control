@@ -15,6 +15,7 @@ class GetUserSchema(CamelModel):
     email: str
     created_at: Optional[datetime]
     updated_at: Optional[datetime]
+
     class Config:
         orm_mode = True
 
@@ -28,5 +29,3 @@ class PostUserSchema(CamelModel):
 class PostUserEmailPasswordSchema(CamelModel):
     email: str = "joao.teste@email.com"
     password: str = "Teste@123"
-
-

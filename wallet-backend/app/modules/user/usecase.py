@@ -12,28 +12,30 @@ from app.modules.core.utils import (
     valid_name,
     valid_password,
 )
+from app.modules.spent.repository import SpentNodeRepository
 from app.modules.user import repository, schema
 from app.modules.user.model import User
-from app.modules.core.graph_models import User as UserNode, Spent
 
 
 class GetUserService:
     def __init__(self, id: int):
         self._id = id
         self._repository = repository.UserRepository()
+        self._pydantic_model = pydantic_model_creator(User)
 
     async def _validate(self):
         user = await self._repository.get_by_id(self._id)
-        if user:
+        if not user:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail=MessageEnum.EMAIL_ALREADY_EXISTS.value,
+                detail=MessageEnum.USER_NOT_FOUND.value,
             )
         return user
 
     async def execute(self):
         user = await self._validate()
-        return schema.GetUserSchema().from_orm(user)
+        result = await self._pydantic_model.from_tortoise_orm(user)
+        return schema.GetUserSchema(**result.dict())
 
 
 class GetUsersService:
@@ -54,6 +56,8 @@ class CreateUserService:
     def __init__(self, payload: schema.PostUserSchema):
         self._payload = payload
         self._repository = repository.UserRepository()
+        self._graph_user_repository = repository.UserNodeRepository()
+        self._graph_spent_repository = SpentNodeRepository()
         self._pydantic_model = pydantic_model_creator(User)
 
     async def _validate_user(self):
@@ -67,23 +71,19 @@ class CreateUserService:
                 detail=MessageEnum.EMAIL_ALREADY_EXISTS.value,
             )
 
-    async def _create_node(self, user: User):
-        node = UserNode(uuid=uuid.uuid4().hex, name=user.name, email=user.email)
-        node.save()
+    async def _create_node_user(self, user: User):
+        node = await self._graph_user_repository.create(
+            dict(uuid=uuid.uuid4().hex, name=user.name, email=user.email)
+        )
+        await self._graph_spent_repository.relating_node(node)
         return node
-
-    async def _relating_node(self, user_node: UserNode):
-        spending_base = Spent().nodes.filter(base=True)
-        for spent_node in spending_base:
-            spent_node.user.connect(user_node)
 
     async def execute(self):
         await self._validate_user()
         self._payload.password = pbkdf2_sha256.hash(self._payload.password)
         dict_user = self._payload.dict()
         user = await self._repository.create(dict_user)
-        user_node = await self._create_node(user)
-        await self._relating_node(user_node)
+        await self._create_node_user(user)
         result = await self._pydantic_model.from_tortoise_orm(user)
         return schema.GetUserSchema(**result.dict())
 

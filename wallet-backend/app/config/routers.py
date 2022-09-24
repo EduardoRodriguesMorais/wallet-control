@@ -11,8 +11,10 @@ def init_routers(app: FastAPI):
     """
     from app.modules.core import helthcheck_router
     from app.modules.user import router as user_router
+    from app.modules.spent import router as spent_router
 
     app.include_router(helthcheck_router.router)
     app.include_router(user_router.router, prefix="/users", tags=["User"])
+    app.include_router(spent_router.router, prefix="/spending", tags=["Spent"])
 
     add_pagination(app)

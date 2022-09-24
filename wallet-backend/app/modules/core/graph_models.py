@@ -10,6 +10,7 @@ from neomodel import (
 class Spent(StructuredNode):
     uuid = StringProperty(unique_index=True)
     base = BooleanProperty(default=False)
+    is_raiz = BooleanProperty(default=False)
     div = StringProperty()
     have_children = BooleanProperty(default=False)
     user = RelationshipFrom("User", "SPENT")

@@ -34,6 +34,9 @@ def get_nodo(nodo):
         return nodo
     else:
         vlr_uuid = uuid.uuid4().hex
+        is_raiz = (
+            False if nodo not in ["Despesas Fixas", "Despesas Temporárias"] else True
+        )
         tx = graph.begin()
         tx.create(
             Node(
@@ -43,6 +46,7 @@ def get_nodo(nodo):
                 uuid=vlr_uuid,
                 base=True,
                 haveChildren=False,
+                is_raiz=is_raiz,
             )
         )
         graph.commit(tx)

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Request, status
+from fastapi import APIRouter, Depends, status
 from fastapi_jwt_auth import AuthJWT
 from fastapi_pagination import Page, paginate
 
@@ -65,4 +65,3 @@ async def login(
 async def create_admin():
     await usecase.CreateUserAdminService().execute()
     return {"detail": "Admin user created"}
-
