@@ -1,0 +1,20 @@
+APP_VERSION=1.0.0
+ENVIRONMENT=dev
+TESTING=False
+APP_PORT=8000
+APP_NAME=Wallet Control
+APP_DESCRIPTION=Backend Wallet.
+DEBUG=False
+DB_TEST_URL=sqlite://:memory:
+DB_URL=mysql://admin:123456qw@localhost:3306/wallet
+GENERATE_SCHEMAS=False
+SECRET_KEY=OEYnJzsz2oMZL04CPOMUcjZmz_rpi6tQ9uJVP2RZ6bMYjufj65JNg9MSOC1OkscJ1XgT8qtaNV_hfLOQhnDOhQ
+
+# USER ADMIN
+CREATE_ADMIN=True
+EMAIL_ADMIN=admin@under.com.br
+NAME_ADMIN=Admin
+PASSWORD_ADMIN=admin
+
+# NEO4J
+NEO4J_ACCESS="bolt://neo4j:admin@localhost:7687"

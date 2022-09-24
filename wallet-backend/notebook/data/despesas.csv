@@ -1,0 +1,65 @@
+from,to
+Despesas Fixas,Habitação
+Despesas Fixas,Saúde
+Despesas Fixas,Transporte
+Despesas Fixas,Despesas Pessoais
+Despesas Fixas,Educação
+Despesas Fixas,Lazer
+Habitação,Prestação Apartamento
+Habitação,Condomínio
+Habitação,IPTU + Taxas Municipais
+Habitação,Conta de Energia
+Habitação,Conta de Água
+Habitação,Conta de Gás
+Habitação,Telefones Celulares
+Habitação,Internet
+Habitação,Supermercado
+Habitação,Açougue
+Habitação,Feira
+Habitação,Lanches
+Habitação,Padaria
+Habitação,Empregados
+Habitação,Lavanderia
+Saúde,Plano de Saúde
+Saúde,Médicos e Terapeutas
+Saúde,Dentista
+Saúde,Medicamentos
+Transporte,Prestação
+Transporte,"IPVA, DPVAT e Licenciamento"
+Transporte,Seguro
+Transporte,Combustível
+Transporte,Estacionamentos
+Transporte,Lavagens
+Transporte,Mecânico
+Transporte,Multas
+Transporte,Avião
+Transporte,Ônibus
+Transporte,Trem
+Transporte,Táxi/Uber
+Despesas Pessoais,Higiene Pessoal
+Despesas Pessoais,Cosméticos
+Despesas Pessoais,Acessórios
+Despesas Pessoais,Cabeleireiro
+Despesas Pessoais,Vestuário
+Despesas Pessoais,Academia
+Educação,Escola / Faculdade
+Educação,Cursos
+Educação,Material Escolar
+Lazer,Restaurantes
+Lazer,Pizzaria/Ifood
+Lazer,Livraria
+Lazer,Games
+Lazer,Filmes
+Lazer,Hospedagens
+Lazer,Passeios
+Lazer,Cinema
+Lazer,Netflix
+Lazer,Spotify
+Despesas Temporárias,Viagem
+Despesas Temporárias,Manutenção Doméstica
+Despesas Temporárias,Manutenção de Veículos
+Despesas Temporárias,Presentes
+Despesas Temporárias,Eletrônicos
+Despesas Temporárias,Móveis e Eletrodomésticos
+Despesas Temporárias,Empreendimento
+Despesas Temporárias,Reservas

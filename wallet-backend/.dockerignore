@@ -1,0 +1,7 @@
+local.yml
+.env
+.gitignore
+dotenv_example
+.pytest_cache
+.coverage
+.dockerignore
