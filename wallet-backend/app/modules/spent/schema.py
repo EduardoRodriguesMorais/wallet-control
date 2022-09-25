@@ -1,4 +1,5 @@
 from fastapi_camelcase import CamelModel
+from typing import List, Optional
 
 
 class GetSpentSchema(CamelModel):
@@ -8,3 +9,8 @@ class GetSpentSchema(CamelModel):
     haveChildren: bool = True
     is_raiz: bool = True
     base: bool = True
+
+
+class GetSubSpendingSchema(CamelModel):
+    spent: GetSpentSchema
+    sub_spending: Optional[List[GetSpentSchema]]
